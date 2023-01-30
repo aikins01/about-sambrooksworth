@@ -22,7 +22,7 @@ function DesktopMiddle(props) {
   return (
     <nav {...props}>
       {/* name extrabold as nav */}
-      <h2 className=" text-2xl font-extrabold text-zinc-800 ">
+      <h2 className=" text-2xl font-extrabold tracking-wide text-zinc-800">
         Samuel Brooksworth
       </h2>
     </nav>
