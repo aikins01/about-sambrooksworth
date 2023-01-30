@@ -11,9 +11,9 @@ import { Fragment, useEffect, useRef } from 'react'
 function MobileMiddle(props) {
   return (
     <nav {...props}>
-      <h2 className="text-2xl font-extrabold tracking-wide text-zinc-800">
+      <p className="text-4xl font-extrabold text-zinc-800">
         Samuel Brooksworth
-      </h2>
+      </p>
     </nav>
   )
 }
@@ -22,9 +22,9 @@ function DesktopMiddle(props) {
   return (
     <nav {...props}>
       {/* name extrabold as nav */}
-      <h2 className=" text-2xl font-extrabold tracking-wide text-zinc-800">
+      <p className=" text-4xl font-extrabold  text-zinc-800">
         Samuel Brooksworth
-      </h2>
+      </p>
     </nav>
   )
 }
