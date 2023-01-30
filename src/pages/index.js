@@ -60,7 +60,7 @@ export default function Home() {
           </div>
           <div className="lg:order-first lg:row-span-2">
             <h1 className="text-4xl font-bold tracking-tight text-zinc-800  sm:text-5xl">
-              I&apos;m Samuel Brookswort., <br /> British-Ghanaian, businessman
+              I&apos;m Samuel Brookswort. <br /> British-Ghanaian, businessman
               and entrepreneur.
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 ">
