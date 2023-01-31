@@ -65,17 +65,18 @@ export default function Home() {
             </h1>
             <div className="mt-6 space-y-7 text-base text-zinc-600 ">
               <p>
-                I was born in 1988 in Lewisham, South London, and raised in
-                Bury, Greater Manchester. I am an identical twin and the oldest
-                of five siblings, and I attended Sheffield Hallam University
-                where I earned a Bachelor of Science in Information Technology
-                and Business Studies.
+                Born in 1988 in Lewisham, South London, and raised in Bury,
+                Greater Manchester. I am an identical twin and the oldest of
+                five siblings, and I attended Sheffield Hallam University where
+                I earned a Bachelor of Science in Information Technology and
+                Business Studies.
               </p>
               <p>
                 I first came to public attention in 2016 as a contestant on BBC
-                One&apos;s &quo;The Apprentice,&quo; where I showed my skills in
-                project management and sales, leading my team to victory in one
-                of the tasks and reaching week seven before being eliminated.
+                One&apos;s &quot;The Apprentice,&quot; where I showed my skills
+                in project management and sales, leading my team to victory in
+                one of the tasks and reaching week seven before being
+                eliminated.
               </p>
               <p>
                 After my time on the show, I founded the Startup Accelerator
@@ -93,9 +94,9 @@ export default function Home() {
                 In 2022, Remoteli was named Global Startup of the Year at the
                 Startup Awards National Series, and I was also nominated for
                 several awards, including the Guba Award in the
-                &quo;Professional of the Year&quo; category and the Screen
-                Nation Film & TV Award in the &quo;Favourite Reality TV
-                Talent&quo; category. I am passionate about helping
+                &quot;Professional of the Year&quot; category and the Screen
+                Nation Film & TV Award in the &quot;Favourite Reality TV
+                Talent&quot; category. I am passionate about helping
                 entrepreneurs achieve their business goals, and I am dedicated
                 to providing the support and resources they need to succeed.
               </p>

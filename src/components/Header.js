@@ -11,7 +11,7 @@ import { Fragment, useEffect, useRef } from 'react'
 function MobileMiddle(props) {
   return (
     <nav {...props}>
-      <p className="text-4xl font-extrabold text-zinc-800">
+      <p className="text-3xl font-extrabold text-zinc-800">
         Samuel Brooksworth
       </p>
     </nav>
