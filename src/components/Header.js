@@ -11,9 +11,13 @@ import { Fragment, useEffect, useRef } from 'react'
 function MobileMiddle(props) {
   return (
     <nav {...props}>
-      <p className="text-3xl font-extrabold text-zinc-800">
+      <h1
+        className="  overflow-hidden overflow-ellipsis whitespace-nowrap p-1
+        text-2xl font-extrabold tracking-wide text-zinc-800
+      "
+      >
         Samuel Brooksworth
-      </p>
+      </h1>
     </nav>
   )
 }
@@ -163,8 +167,8 @@ export function Header() {
                 </AvatarContainer>
               </div>
               <div className="flex flex-1 justify-end md:justify-center">
-                <MobileMiddle className="pointer-events-auto md:hidden" />
-                <DesktopMiddle className="pointer-events-auto hidden md:block" />
+                <MobileMiddle className="pointer-events-auto  rounded-lg bg-white/20 backdrop-blur md:hidden" />
+                <DesktopMiddle className="pointer-events-auto   hidden rounded-lg bg-white/20 pl-2 backdrop-blur md:block" />
               </div>
               <div className="flex justify-end md:flex-1">
                 <div className="pointer-events-auto">
