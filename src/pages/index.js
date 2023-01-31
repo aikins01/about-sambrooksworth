@@ -11,13 +11,21 @@ import {
   LinkedInIcon,
 } from '@/components/SocialIcons'
 import portraitImage from '@/images/samuel-brooksworth-1.png'
+import logoRemoteli from '@/images/remoteli-logo.jpg'
+import logoToyota from '@/images/toyota-logo.jpg'
+import logoLbc from '@/images/lbc-logo.jpg'
+import logoCarryLift from '@/images/carrylift-group-logo.jpg'
+import logoCarcraft from '@/images/carcraft-logo.jpg'
+import logoTheGuardian from '@/images/the-guardian-logo.jpg'
+import logoBuildNMaster from '@/images/build-and-master-logo.jpg'
+import { Button } from '@/components/Button'
 
 function SocialLink({ className, href, children, icon: Icon }) {
   return (
     <li className={clsx(className, 'flex')}>
       <Link
         href={href}
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-stone-500  "
+        className="group flex text-sm font-medium text-zinc-800 transition hover:text-stone-500 "
       >
         <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-stone-500" />
         <span className="ml-4">{children}</span>
@@ -37,11 +45,153 @@ function MailIcon(props) {
   )
 }
 
+function ArrowDownIcon(props) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function BriefcaseIcon(props) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path
+        d="M2.75 9.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
+        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
+      />
+      <path
+        d="M3 14.25h6.249c.484 0 .952-.002 1.316.319l.777.682a.996.996 0 0 0 1.316 0l.777-.682c.364-.32.832-.319 1.316-.319H21M8.75 6.5V4.75a2 2 0 0 1 2-2h2.5a2 2 0 0 1 2 2V6.5"
+        className="stroke-zinc-400 dark:stroke-zinc-500"
+      />
+    </svg>
+  )
+}
+
+function Resume() {
+  let resume = [
+    {
+      company: 'Remoteli',
+      title: 'Founder & Chief Executive Officer',
+      logo: logoRemoteli,
+      start: 'Sep 2020',
+      end: {
+        label: 'Present',
+        dateTime: new Date().getFullYear(),
+      },
+    },
+    {
+      company: 'The Guardian',
+      title: 'Account Director',
+      logo: logoTheGuardian,
+      start: 'Feb 2019',
+      end: 'Dec 2020',
+    },
+    {
+      company: 'Build and Master',
+      title: 'Founder & Executive Director',
+      logo: logoBuildNMaster,
+      start: 'Aug 2017',
+      end: 'Sep 2020',
+    },
+    {
+      company: 'CarryLift Group',
+      title: 'Area Manager',
+      logo: logoCarryLift,
+      start: 'Aug 2016',
+      end: 'Aug 2017',
+    },
+    {
+      company: 'Toyota Material Handling UK',
+      title: 'Area Manager',
+      logo: logoToyota,
+      start: 'Aug 2015',
+      end: 'Jun 2016',
+    },
+    {
+      company: 'Carcraft',
+      title: 'Business Development Manager',
+      logo: logoCarcraft,
+      start: 'Feb 2014',
+      end: 'Apr 2015',
+    },
+    {
+      company: 'London Business Conferences Group',
+      title: 'Commercial Manager',
+      logo: logoLbc,
+      start: 'Jul 2013',
+      end: 'Dec 2013',
+    },
+  ]
+
+  return (
+    <div className="rounded-2xl border border-zinc-100 p-6 ">
+      <h2 className="flex text-sm font-semibold text-zinc-900 ">
+        <BriefcaseIcon className="h-6 w-6 flex-none" />
+        <span className="ml-3">Work Experience</span>
+      </h2>
+      <ol className="mt-6 space-y-4">
+        {resume.map((role, roleIndex) => (
+          <li key={roleIndex} className="flex gap-4">
+            <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 ">
+              <Image src={role.logo} alt="" className="h-7 w-7 object-cover" />
+            </div>
+            <dl className="flex flex-auto flex-wrap gap-x-2">
+              <dt className="sr-only">Company</dt>
+              <dd className="w-full flex-none text-sm font-medium text-zinc-900 ">
+                {role.company}
+              </dd>
+              <dt className="sr-only">Role</dt>
+              <dd className="text-xs text-zinc-500 ">{role.title}</dd>
+              <dt className="sr-only">Date</dt>
+              <dd
+                className="ml-auto text-xs text-zinc-400 "
+                aria-label={`${role.start.label ?? role.start} until ${
+                  role.end.label ?? role.end
+                }`}
+              >
+                <time dateTime={role.start.dateTime ?? role.start}>
+                  {role.start.label ?? role.start}
+                </time>{' '}
+                <span aria-hidden="true">—</span>{' '}
+                <time dateTime={role.end.dateTime ?? role.end}>
+                  {role.end.label ?? role.end}
+                </time>
+              </dd>
+            </dl>
+          </li>
+        ))}
+      </ol>
+      <Button
+        href="mailto:info@samuelbrooksworth.com"
+        variant="secondary"
+        className="group mt-6 w-full"
+      >
+        Shoot me an email, Let&apos;s talk
+        <MailIcon className="h-4 w-4 stroke-stone-400 transition group-active:stroke-stone-600 " />
+      </Button>
+    </div>
+  )
+}
+
 export default function Home() {
   return (
     <>
       <Head>
-        <title>About - Samuel Brooksworth</title>
+        <title>About Samuel Brooksworth</title>
         <meta name="description" content="I'm Samuel Brooksworth, from Ghana" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -59,7 +209,7 @@ export default function Home() {
             </div>
           </div>
           <div className="lg:order-first lg:row-span-2">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-800  sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl">
               I&apos;m Samuel Brooksworth. <br /> British-Ghanaian, businessman
               and entrepreneur.
             </h1>
@@ -132,6 +282,9 @@ export default function Home() {
                 info@samuelbrooksworth.com
               </SocialLink>
             </ul>
+            <div className="mt-8">
+              <Resume />
+            </div>
           </div>
         </div>
       </Container>
