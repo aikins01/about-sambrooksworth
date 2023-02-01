@@ -11,11 +11,7 @@ import { Fragment, useEffect, useRef } from 'react'
 function MobileMiddle(props) {
   return (
     <nav {...props}>
-      <h1
-        className="  overflow-hidden overflow-ellipsis whitespace-nowrap p-1
-        text-2xl font-extrabold tracking-wide text-zinc-800
-      "
-      >
+      <h1 className="p-1 overflow-hidden text-2xl font-extrabold tracking-wide overflow-ellipsis whitespace-nowrap text-zinc-800">
         Samuel Brooksworth
       </h1>
     </nav>
@@ -26,7 +22,7 @@ function DesktopMiddle(props) {
   return (
     <nav {...props}>
       {/* name extrabold as nav */}
-      <p className=" text-4xl font-extrabold  text-zinc-800">
+      <p className="text-4xl font-extrabold text-zinc-800">
         Samuel Brooksworth
       </p>
     </nav>
@@ -44,7 +40,7 @@ function AvatarContainer({ className, ...props }) {
     <div
       className={clsx(
         className,
-        'h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-stone-800/5 ring-1 ring-stone-900/5 backdrop-blur '
+        'h-10 w-10 rounded-full  p-0.5  shadow-lg shadow-stone-800/5 ring-1 ring-stone-900/5 '
       )}
       {...props}
     />
@@ -145,7 +141,7 @@ export function Header() {
   return (
     <>
       <header
-        className="pointer-events-none relative z-50 flex flex-col"
+        className="relative z-50 flex flex-col pointer-events-none "
         style={{
           height: 'var(--header-height)',
           marginBottom: 'var(--header-mb)',
@@ -153,7 +149,7 @@ export function Header() {
       >
         <div
           ref={headerRef}
-          className="top-0 z-10 h-16 pt-6"
+          className="top-0 z-10 h-16 pt-6 bg-white/20 backdrop-blur"
           style={{ position: 'var(--header-position)' }}
         >
           <Container
@@ -166,9 +162,9 @@ export function Header() {
                   <Avatar />
                 </AvatarContainer>
               </div>
-              <div className="flex flex-1 justify-end md:justify-center">
-                <MobileMiddle className="pointer-events-auto  rounded-lg bg-white/20 backdrop-blur md:hidden" />
-                <DesktopMiddle className="pointer-events-auto   hidden rounded-lg bg-white/20 pl-2 backdrop-blur md:block" />
+              <div className="flex justify-end flex-1 md:justify-center">
+                <MobileMiddle className="rounded-lg pointer-events-auto md:hidden" />
+                <DesktopMiddle className="hidden rounded-lg pointer-events-auto md:block" />
               </div>
               <div className="flex justify-end md:flex-1">
                 <div className="pointer-events-auto">
