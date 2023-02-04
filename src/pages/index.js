@@ -3,6 +3,8 @@ import Head from 'next/head'
 import Link from 'next/link'
 import clsx from 'clsx'
 
+import { Button } from '@/components/Button'
+import { Card } from '@/components/Card'
 import { Container } from '@/components/Container'
 import {
   TwitterIcon,
@@ -10,7 +12,11 @@ import {
   GitHubIcon,
   LinkedInIcon,
 } from '@/components/SocialIcons'
-import portraitImage from '@/images/samuel-brooksworth-1.png'
+import image1 from '@/images/photos/image-1.jpg'
+import image2 from '@/images/photos/image-2.jpg'
+import image3 from '@/images/photos/image-3.jpg'
+import image4 from '@/images/photos/image-4.jpg'
+import image5 from '@/images/photos/image-5.jpg'
 import logoRemoteli from '@/images/remoteli-logo.jpg'
 import logoToyota from '@/images/toyota-logo.jpg'
 import logoLbc from '@/images/lbc-logo.jpg'
@@ -18,41 +24,29 @@ import logoCarryLift from '@/images/carrylift-group-logo.jpg'
 import logoCarcraft from '@/images/carcraft-logo.jpg'
 import logoTheGuardian from '@/images/the-guardian-logo.jpg'
 import logoBuildNMaster from '@/images/build-and-master-logo.jpg'
-import { Button } from '@/components/Button'
-
-function SocialLink({ className, href, children, icon: Icon }) {
-  return (
-    <li className={clsx(className, 'flex')}>
-      <Link
-        href={href}
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-stone-500 "
-      >
-        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-stone-500" />
-        <span className="ml-4">{children}</span>
-      </Link>
-    </li>
-  )
-}
+import { formatDate } from '@/lib/formatDate'
+// import { generateRssFeed } from '@/lib/generateRssFeed'
+// import { getAllArticles } from '@/lib/getAllArticles'
+// import { formatDate } from '@/lib/formatDate'
 
 function MailIcon(props) {
   return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
       <path
-        fillRule="evenodd"
-        d="M6 5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6Zm.245 2.187a.75.75 0 0 0-.99 1.126l6.25 5.5a.75.75 0 0 0 .99 0l6.25-5.5a.75.75 0 0 0-.99-1.126L12 12.251 6.245 7.187Z"
+        d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
+        className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
       />
-    </svg>
-  )
-}
-
-function ArrowDownIcon(props) {
-  return (
-    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
-        d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
+        className="stroke-zinc-400 dark:stroke-zinc-500"
       />
     </svg>
   )
@@ -78,6 +72,70 @@ function BriefcaseIcon(props) {
         className="stroke-zinc-400 dark:stroke-zinc-500"
       />
     </svg>
+  )
+}
+
+function ArrowDownIcon(props) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+function Article({ article }) {
+  return (
+    <Card as="article">
+      <Card.Title href={article.href}>{article.title}</Card.Title>
+      <Card.Eyebrow as="p" decorate>
+        {article.source}
+      </Card.Eyebrow>
+      <Card.Description>{article.description}</Card.Description>
+      <Card.Cta>Read article</Card.Cta>
+    </Card>
+  )
+}
+
+function SocialLink({ icon: Icon, ...props }) {
+  return (
+    <Link className="p-1 -m-1 group" {...props}>
+      <Icon className="w-6 h-6 transition fill-zinc-500 group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+    </Link>
+  )
+}
+
+function Newsletter() {
+  return (
+    <form
+      action="/thank-you"
+      className="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40"
+    >
+      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <MailIcon className="flex-none w-6 h-6" />
+        <span className="ml-3">Stay up to date</span>
+      </h2>
+      <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+        Get notified when I&apos;m up to something new, and unsubscribe at any
+        time.
+      </p>
+      <div className="flex mt-6">
+        <input
+          type="email"
+          placeholder="Email address"
+          aria-label="Email address"
+          required
+          className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10 sm:text-sm"
+        />
+        <Button type="submit" className="flex-none ml-4">
+          Join
+        </Button>
+      </div>
+    </form>
   )
 }
 
@@ -138,27 +196,29 @@ function Resume() {
   ]
 
   return (
-    <div className="rounded-2xl border border-zinc-100 p-6 ">
-      <h2 className="flex text-sm font-semibold text-zinc-900 ">
-        <BriefcaseIcon className="h-6 w-6 flex-none" />
-        <span className="ml-3">Work Experience</span>
+    <div className="p-6 border rounded-2xl border-zinc-100 dark:border-zinc-700/40">
+      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <BriefcaseIcon className="flex-none w-6 h-6" />
+        <span className="ml-3">My Work</span>
       </h2>
       <ol className="mt-6 space-y-4">
         {resume.map((role, roleIndex) => (
           <li key={roleIndex} className="flex gap-4">
-            <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 ">
-              <Image src={role.logo} alt="" className="h-7 w-7 object-cover" />
+            <div className="relative flex items-center justify-center flex-none w-10 h-10 mt-1 rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+              <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
             </div>
-            <dl className="flex flex-auto flex-wrap gap-x-2">
+            <dl className="flex flex-wrap flex-auto gap-x-2">
               <dt className="sr-only">Company</dt>
-              <dd className="w-full flex-none text-sm font-medium text-zinc-900 ">
+              <dd className="flex-none w-full text-sm font-medium text-zinc-900 dark:text-zinc-100">
                 {role.company}
               </dd>
               <dt className="sr-only">Role</dt>
-              <dd className="text-xs text-zinc-500 ">{role.title}</dd>
+              <dd className="text-xs text-zinc-500 dark:text-zinc-400">
+                {role.title}
+              </dd>
               <dt className="sr-only">Date</dt>
               <dd
-                className="ml-auto text-xs text-zinc-400 "
+                className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
                 aria-label={`${role.start.label ?? role.start} until ${
                   role.end.label ?? role.end
                 }`}
@@ -175,116 +235,130 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button
-        href="mailto:info@samuelbrooksworth.com"
-        variant="secondary"
-        className="group mt-6 w-full"
-      >
-        Shoot me an email, Let&apos;s talk
-        <MailIcon className="h-4 w-4 stroke-stone-400 transition group-active:stroke-stone-600 " />
-      </Button>
+    </div>
+  )
+}
+
+function Photos() {
+  let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
+
+  return (
+    <div className="mt-16 sm:mt-20">
+      <div className="flex justify-center gap-5 py-4 -my-4 overflow-hidden sm:gap-8">
+        {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
+          <div
+            key={image.src}
+            className={clsx(
+              'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
+              rotations[imageIndex % rotations.length]
+            )}
+          >
+            <Image
+              src={image}
+              alt=""
+              sizes="(min-width: 640px) 18rem, 11rem"
+              className="absolute inset-0 object-cover w-full h-full"
+            />
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
 
 export default function Home() {
+  let articles = [
+    {
+      title: 'Now it’s time for exports to rise to the top of the agenda',
+      description:
+        'Samuel Brooksworth, a former contestant on The Apprentice, founded Remoteli last year. He said the pandemic gave him the boldness to go out and do it. He has offices in Accra and London',
+      href: 'https://www.thetimes.co.uk/article/now-its-time-for-exports-to-rise-to-the-top-of-the-agenda-7vdkhp9gm',
+
+      source: 'The Times',
+    },
+    {
+      title:
+        'My time on The Apprentice taught me a lot about black men in business',
+      description:
+        'A lack of recognised black businessmen was one of the reasons I applied to BBC One’s The Apprentice in 2016, for which I was selected as a candidate (I was then using an old family surname, Boateng). Since Tim Campbell won the first ever series in 2005, only one other black man apart from me has reached the seventh week.',
+      href: 'https://www.theguardian.com/commentisfree/2019/nov/01/the-apprentice-black-men-business-senior-positions-discrimination',
+      source: 'The Guardian',
+    },
+    {
+      title: 'She quit her job as a NYC lawyer to move to Ghana',
+      description:
+        'Samuel Brooksworth, a former contestant on the UK’s version of reality TV show “The Apprentice,” seized on the turmoil of 2020 to move from the UK to Ghana to set up a remote skills business Remoteli.',
+      href: 'https://edition.cnn.com/travel/article/ghana-diaspora-return-africa-cmd/index.html',
+      source: 'CNN',
+    },
+  ]
   return (
     <>
       <Head>
-        <title>About Samuel Brooksworth</title>
-        <meta name="description" content="I'm Samuel Brooksworth, from Ghana" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <title>
+          Samuel Brooksworth - British-Ghanaian, Founder, Businessman and
+          Entrepreneur
+        </title>
+        <meta
+          name="description"
+          content="I’m Spencer, a software designer and entrepreneur based in New York City. I’m the founder and CEO of Planetaria, where we develop technologies that empower regular people to explore space on their own terms."
+        />
       </Head>
-      <Container className="mt-16 sm:mt-32">
-        <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
-          <div className="lg:pl-20">
-            <div className="max-w-xs px-2.5 lg:max-w-none">
-              <Image
-                src={portraitImage}
-                alt=""
-                sizes="(min-width: 1024px) 32rem, 20rem"
-                className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover "
-              />
-            </div>
+      <Container className="mt-9">
+        <div className="max-w-2xl">
+          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+            Founder, businessman and entrepreneur
+          </h1>
+          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+            I&apos;m Samuel Brooksworth, Founder and CEO of Remoteli. My company
+            helps businesses succeed with remote work through services such as
+            Business Assistance and Customer Service Support. My mission is to
+            make remote work easier for businesses and empower entrepreneurs.
+          </p>
+          <div className="flex gap-6 mt-6">
+            <SocialLink
+              href="https://twitter.com/SBrooksworth"
+              icon={TwitterIcon}
+            >
+              Follow on Twitter
+            </SocialLink>
+            <SocialLink
+              href="https://www.instagram.com/samuelbrooksworth/"
+              icon={InstagramIcon}
+            >
+              Follow on Instagram
+            </SocialLink>
+            <SocialLink
+              href="https://www.linkedin.com/in/samuelbrooksworth/"
+              icon={LinkedInIcon}
+            >
+              Follow on LinkedIn
+            </SocialLink>
+            <SocialLink
+              href="mailto:info@samuelbrooksworth.com"
+              icon={MailIcon}
+            >
+              info@samuelbrooksworth.com
+            </SocialLink>
           </div>
-          <div className="lg:order-first lg:row-span-2">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl">
-              I&apos;m Samuel Brooksworth. <br /> British-Ghanaian, businessman
-              and entrepreneur.
-            </h1>
-            <div className="mt-6 space-y-7 text-base text-zinc-600 ">
-              <p>
-                Born in 1988 in Lewisham, South London, and raised in Bury,
-                Greater Manchester. I am an identical twin and the oldest of
-                five siblings, and I attended Sheffield Hallam University where
-                I earned a Bachelor of Science in Information Technology and
-                Business Studies.
-              </p>
-              <p>
-                I first came to public attention in 2016 as a contestant on BBC
-                One&apos;s &quot;The Apprentice,&quot; where I showed my skills
-                in project management and sales, leading my team to victory in
-                one of the tasks and reaching week seven before being
-                eliminated.
-              </p>
-              <p>
-                After my time on the show, I founded the Startup Accelerator
-                Build and Master, where I educated and mentored entrepreneurs to
-                grow and scale their businesses. In 2020, I founded Remoteli, an
-                on-demand staffing organization that helps businesses globally
-                build remote workforces. Remoteli offers a wide range of
-                services including Business Assistance, Customer Service
-                Support, Social Media Management, Business Development, and
-                Software Development. Our goal is to make remote work easier for
-                businesses and provide them with the support they need to
-                succeed.
-              </p>
-              <p>
-                In 2022, Remoteli was named Global Startup of the Year at the
-                Startup Awards National Series, and I was also nominated for
-                several awards, including the Guba Award in the
-                &quot;Professional of the Year&quot; category and the Screen
-                Nation Film & TV Award in the &quot;Favourite Reality TV
-                Talent&quot; category. I am passionate about helping
-                entrepreneurs achieve their business goals, and I am dedicated
-                to providing the support and resources they need to succeed.
-              </p>
-            </div>
+        </div>
+      </Container>
+      <Photos />
+
+      <Container className="mt-24 md:mt-28">
+        <h2 className="mb-5 text-3xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
+          As featured in
+        </h2>
+
+        <div className="grid max-w-xl grid-cols-1 mx-auto gap-y-20 lg:max-w-none lg:grid-cols-2">
+          <div className="flex flex-col gap-16">
+            {articles.map((article) => (
+              <Article key={article.href} article={article} />
+            ))}
           </div>
-          <div className="lg:pl-20">
-            <ul role="list">
-              <SocialLink
-                href="https://twitter.com/SBrooksworth"
-                icon={TwitterIcon}
-              >
-                Follow on Twitter
-              </SocialLink>
-              <SocialLink
-                href="https://www.instagram.com/samuelbrooksworth/"
-                icon={InstagramIcon}
-                className="mt-4"
-              >
-                Follow on Instagram
-              </SocialLink>
-              <SocialLink
-                href="https://www.linkedin.com/in/samuelbrooksworth/"
-                icon={LinkedInIcon}
-                className="mt-4"
-              >
-                Follow on LinkedIn
-              </SocialLink>
-              <SocialLink
-                href="mailto:info@samuelbrooksworth.com"
-                icon={MailIcon}
-                className="mt-8 border-t border-zinc-100 pt-8 "
-              >
-                info@samuelbrooksworth.com
-              </SocialLink>
-            </ul>
-            <div className="mt-8">
-              <Resume />
-            </div>
+          <div className="space-y-10 lg:pl-16 xl:pl-24">
+            <Newsletter />
+            <Resume />
           </div>
         </div>
       </Container>
