@@ -6,15 +6,12 @@ export default function ThankYou() {
   return (
     <>
       <Head>
-        <title>You’re subscribed - Samuel Brooksworth</title>
-        <meta
-          name="description"
-          content="Thanks for subscribing to me."
-        />
+        <title>You Reached Out - Samuel Brooksworth</title>
+        <meta name="description" content="Thanks for contacting me." />
       </Head>
       <SimpleLayout
-        title="Thanks for subscribing."
-        intro="I’ll send you an email any time I release a new project, or have anything interesting to share that I think you’d want to hear about. You can unsubscribe at any time, no hard feelings."
+        title="Thanks for reaching out."
+        intro="I’ll  get back to you as soon as I can."
       />
     </>
   )
