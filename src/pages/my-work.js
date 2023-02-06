@@ -22,33 +22,55 @@ const projects = [
     logo: logoRemoteli,
   },
   {
-    name: 'Toyota',
+    name: 'The Guardian',
     description:
-      'The world’s largest automaker, with a focus on the African market.',
-    link: { href: 'https://toyota.com', label: 'toyota.com' },
-    role: 'Senior Software Engineer',
+      'The world’s largest news publisher, with a focus on the African market.',
+    link: { href: 'https://theguardian.com', label: 'theguardian.com' },
+    role: 'Account Director',
+    logo: logoTheGuardian,
+  },
+  {
+    name: 'Build and Master',
+    description:
+      'The world’s largest tech training company, with a focus on the African market.',
+    link: { href: 'https://buildandmaster.com', label: 'buildandmaster.com' },
+    role: 'Founder & Executive Director',
+    logo: logoBuildNMaster,
+  },
+  {
+    name: 'CarryLift Group',
+    description:
+      'The world’s largest logistics company, with a focus on the African market.',
+    link: { href: 'https://carryliftgroup.com', label: 'carryliftgroup.com' },
+    role: 'Area Manager',
+    logo: logoCarryLift,
+  },
+  {
+    name: 'Toyota Material Handling UK',
+    description:
+      'The world’s largest logistics company, with a focus on the African market.',
+    link: {
+      href: 'https://toyota-forklifts.co.uk',
+      label: 'toyota-forklifts.co.uk',
+    },
+    role: 'Area Manager',
     logo: logoToyota,
   },
   {
-    name: 'HelioStream',
+    name: 'Carcraft',
     description:
-      'Real-time video streaming library, optimized for interstellar transmission.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoHelioStream,
+      'The world’s largest logistics company, with a focus on the African market.',
+    link: { href: 'https://carcraft.co.uk', label: 'carcraft.co.uk' },
+    role: 'Business Development Manager',
+    logo: logoCarcraft,
   },
   {
-    name: 'cosmOS',
+    name: 'London Business Conferences Group',
     description:
-      'The operating system that powers our Planetaria space shuttles.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoCosmos,
-  },
-  {
-    name: 'OpenShuttle',
-    description:
-      'The schematics for the first rocket I designed that successfully made it to orbit.',
-    link: { href: '#', label: 'github.com' },
-    logo: logoOpenShuttle,
+      'The world’s largest logistics company, with a focus on the African market.',
+    link: { href: 'https://lbcg.com', label: 'lbcg.com' },
+    role: 'Commercial Manager',
+    logo: logoLbc,
   },
 ]
 
@@ -67,15 +89,15 @@ export default function Projects() {
   return (
     <>
       <Head>
-        <title>Projects - Spencer Sharp</title>
+        <title>My Work - Samuel Brooksworth</title>
         <meta
           name="description"
-          content="Things I’ve made trying to put my dent in the universe."
+          content="Things I’ve worked on trying to put make the world a better place."
         />
       </Head>
       <SimpleLayout
-        title="Things I’ve made trying to put my dent in the universe."
-        intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved."
+        title="Things I’ve worked on trying to put make the world a better place."
+        intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. I’ve worked on them with some amazing people and I’m so grateful for the opportunity to have been a part of them."
       >
         <ul
           role="list"
@@ -92,7 +114,10 @@ export default function Projects() {
                 />
               </div>
               <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-                <Card.Link href={project.link.href}>{project.name}</Card.Link>
+                <Card.Link href={project.link.href}>
+                  {project.name} <span className="text-zinc-400">/</span>{' '}
+                  <span className="text-xs text-zinc-400">{project.role}</span>
+                </Card.Link>
               </h2>
               <Card.Description>{project.description}</Card.Description>
               <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
