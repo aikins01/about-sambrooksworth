@@ -92,11 +92,11 @@ export default function Projects() {
         <title>My Work - Samuel Brooksworth</title>
         <meta
           name="description"
-          content="Things I’ve worked on trying to put make the world a better place."
+          content="Things I’ve worked on trying to make the world a better place."
         />
       </Head>
       <SimpleLayout
-        title="Things I’ve worked on trying to put make the world a better place."
+        title="Things I’ve worked on trying to make the world a better place."
         intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. I’ve worked on them with some amazing people and I’m so grateful for the opportunity to have been a part of them."
       >
         <ul
